@@ -871,7 +871,7 @@ void show_fw_version_warnings() {
 //! @brief try to check if firmware is on right type of printer
 static void check_if_fw_is_on_right_printer(){
 #ifdef FILAMENT_SENSOR
-  if((PRINTER_TYPE == PRINTER_MK3) || (PRINTER_TYPE == PRINTER_MK3S)){
+  if((PRINTER_TYPE == PRINTER_MK3) || (PRINTER_TYPE == PRINTER_MK3S) || (PRINTER_TYPE == PRINTER_MK3S_BEAR)){
     #ifdef IR_SENSOR
       if (pat9125_probe()){
         lcd_show_fullscreen_message_and_wait_P(_i("MK3S firmware detected on MK3 printer"));}////MSG_MK3S_FIRMWARE_ON_MK3 c=20 r=4
@@ -2344,7 +2344,7 @@ bool calibrate_z_auto()
 	plan_buffer_line_destinationXYZE(feedrate / 60);
 	st_synchronize();
 	enable_endstops(endstops_enabled);
-	if (PRINTER_TYPE == PRINTER_MK3) {
+	if ((PRINTER_TYPE == PRINTER_MK3) || (PRINTER_TYPE == PRINTER_MK3S_BEAR)) {
 		current_position[Z_AXIS] = Z_MAX_POS + 2.0;
 	}
 	else {
